@@ -158,5 +158,40 @@
   "aiHelp": {
     "description": "AI can help you write a clear and detailed description of your situation. Click the button below to generate a suggestion based on your request type.",
     "suggestion": "AI Suggestion"
+  },
+  "success": {
+    "submissionSuccessSubtitle": "Your assistance request has been successfully submitted",
+    "whatHappensNext": "What happens next?",
+    "initialReview": "Initial Review",
+    "initialReviewDescription": "Our team will review your request within 24 hours",
+    "caseAssignment": "Case Assignment",
+    "caseAssignmentDescription": "A case worker will be assigned to your request",
+    "contactFollowup": "Contact & Follow-up",
+    "contactFollowupDescription": "We'll contact you within 3-5 business days with next steps",
+    "referenceInformation": "Reference Information",
+    "requestId": "Request ID:",
+    "submitted": "Submitted:",
+    "viewMyRequests": "View My Requests",
+    "needImmediateAssistance": "Need immediate assistance? Contact us at",
+    "loading": "Loading...",
+    "needHelp": "Need Help?",
+    "needHelpDescription": "If you have any questions or need assistance filling out this form, please contact our support team at",
+    "orEmailUs": "or email us at"
+  },
+  "footer": {
+    "copyright": "© {{year}} Citizen Assistance Portal. All rights reserved.",
+    "tagline": "Providing essential support services to our community",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contactSupport": "Contact Support"
+  },
+  "language": {
+    "language": "Language:",
+    "english": "English",
+    "arabic": "Arabic"
+  },
+  "errors": {
+    "aiGenerationError": "Sorry, I couldn't generate a suggestion at this time. Please try again.",
+    "submissionError": "Failed to submit request. Please try again."
   }
 }

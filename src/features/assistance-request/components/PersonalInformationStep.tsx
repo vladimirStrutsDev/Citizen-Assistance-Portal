@@ -2,16 +2,17 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import type { RootState } from "@/core/store";
+import type { RootState } from "../../../core/store";
 import {
   clearValidationError,
   setValidationError,
   updatePersonalInfo,
   nextStep,
-} from "@/core/store/slices/assistanceRequestSlice";
-import FormInput from "@/shared/components/ui/FormInput";
-import Button from "@/shared/components/ui/Button";
-import { type PersonalInfoStep, Gender } from "../types";
+} from "../../../core/store/slices/assistanceRequestSlice";
+import FormInput from "../../../shared/components/FormInput";
+import Button from "../../../shared/components/Button";
+import { type PersonalInfoStep } from "../types";
+import { GENDER } from "../../constants/const";
 
 const PersonalInformationStep: React.FC = () => {
   const { t } = useTranslation();
@@ -29,7 +30,7 @@ const PersonalInformationStep: React.FC = () => {
         fullName: formData.fullName || "",
         nationalId: formData.nationalId || "",
         dateOfBirth: formData.dateOfBirth || "",
-        gender: formData.gender || Gender.MALE,
+        gender: formData.gender || GENDER.MALE,
         contactInfo: {
           primaryPhone: formData.contactInfo?.primaryPhone || "",
           emailAddress: formData.contactInfo?.emailAddress || "",
@@ -195,14 +196,14 @@ const PersonalInformationStep: React.FC = () => {
                 {...register("gender")}
                 className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value={Gender.MALE}>{t("options.gender.male")}</option>
-                <option value={Gender.FEMALE}>
+                <option value={GENDER.MALE}>{t("options.gender.male")}</option>
+                <option value={GENDER.FEMALE}>
                   {t("options.gender.female")}
                 </option>
-                <option value={Gender.OTHER}>
+                <option value={GENDER.OTHER}>
                   {t("options.gender.other")}
                 </option>
-                <option value={Gender.PREFER_NOT_TO_SAY}>
+                <option value={GENDER.PREFER_NOT_TO_SAY}>
                   {t("options.gender.preferNotToSay")}
                 </option>
               </select>

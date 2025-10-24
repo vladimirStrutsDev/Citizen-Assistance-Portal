@@ -1,4 +1,4 @@
-import Button from "@/shared/components/ui/Button";
+import Button from "../../../shared/components/Button";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +40,7 @@ const RequestSubmissionSuccess: React.FC = () => {
             {t("messages.submissionSuccessTitle")}
           </h1>
           <p className="text-emerald-100 text-lg">
-            Your assistance request has been successfully submitted
+            {t("success.submissionSuccessSubtitle")}
           </p>
         </div>
 
@@ -55,7 +55,7 @@ const RequestSubmissionSuccess: React.FC = () => {
           {/* Next Steps */}
           <div className="bg-gray-50 rounded-lg p-6 mb-8">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              What happens next?
+              {t("success.whatHappensNext")}
             </h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
@@ -64,10 +64,10 @@ const RequestSubmissionSuccess: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-gray-900">
-                    Initial Review
+                    {t("success.initialReview")}
                   </p>
                   <p className="text-sm text-gray-600">
-                    Our team will review your request within 24 hours
+                    {t("success.initialReviewDescription")}
                   </p>
                 </div>
               </div>
@@ -78,10 +78,10 @@ const RequestSubmissionSuccess: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-gray-900">
-                    Case Assignment
+                    {t("success.caseAssignment")}
                   </p>
                   <p className="text-sm text-gray-600">
-                    A case worker will be assigned to your request
+                    {t("success.caseAssignmentDescription")}
                   </p>
                 </div>
               </div>
@@ -92,10 +92,10 @@ const RequestSubmissionSuccess: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-gray-900">
-                    Contact & Follow-up
+                    {t("success.contactFollowup")}
                   </p>
                   <p className="text-sm text-gray-600">
-                    We'll contact you within 3-5 business days with next steps
+                    {t("success.contactFollowupDescription")}
                   </p>
                 </div>
               </div>
@@ -105,17 +105,17 @@ const RequestSubmissionSuccess: React.FC = () => {
           {/* Reference Information */}
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
             <h3 className="text-lg font-semibold text-blue-900 mb-2">
-              Reference Information
+              {t("success.referenceInformation")}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="font-medium text-blue-900">Request ID:</span>
+                <span className="font-medium text-blue-900">{t("success.requestId")}</span>
                 <span className="ml-2 text-blue-700 font-mono">
                   REQ-{Date.now().toString().slice(-8)}
                 </span>
               </div>
               <div>
-                <span className="font-medium text-blue-900">Submitted:</span>
+                <span className="font-medium text-blue-900">{t("success.submitted")}</span>
                 <span className="ml-2 text-blue-700">
                   {new Date().toLocaleDateString()}
                 </span>
@@ -134,7 +134,7 @@ const RequestSubmissionSuccess: React.FC = () => {
               variant="secondary"
               size="lg"
             >
-              View My Requests
+{t("success.viewMyRequests")}
             </Button>
           </div>
         </div>
@@ -143,7 +143,7 @@ const RequestSubmissionSuccess: React.FC = () => {
       {/* Support Information */}
       <div className="mt-8 text-center">
         <p className="text-sm text-gray-600">
-          Need immediate assistance? Contact us at{" "}
+          {t("success.needImmediateAssistance")}{" "}
           <a
             href="tel:+1234567890"
             className="font-medium text-indigo-600 hover:text-indigo-700"

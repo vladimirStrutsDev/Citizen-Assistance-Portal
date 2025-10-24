@@ -19,14 +19,7 @@
     "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@features/*": ["./src/features/*"],
-      "@core/*": ["./src/core/*"],
-      "@assets/*": ["./src/assets/*"]
-    }
+    "baseUrl": "."
   },
   "include": ["src"]
 }

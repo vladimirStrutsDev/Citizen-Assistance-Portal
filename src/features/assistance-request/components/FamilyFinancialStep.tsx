@@ -2,22 +2,22 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import type { RootState } from "@/core/store";
+import type { RootState } from "../../../core/store";
 import {
   clearValidationError,
   setValidationError,
   updateFamilyFinancialInfo,
   nextStep,
   previousStep,
-} from "@/core/store/slices/assistanceRequestSlice";
-import FormInput from "@/shared/components/ui/FormInput";
-import Button from "@/shared/components/ui/Button";
+} from "../../../core/store/slices/assistanceRequestSlice";
+import FormInput from "../../../shared/components/FormInput";
+import Button from "../../../shared/components/Button";
+import { type FamilyFinancialStep } from "../types";
 import {
-  type FamilyFinancialStep,
-  MaritalStatus,
-  HousingStatus,
-  EmploymentStatus,
-} from "../types";
+  MARITAL_STATUS,
+  HOUSING_STATUS,
+  EMPLOYMENT_STATUS,
+} from "../../constants/const";
 
 const FamilyFinancialStep: React.FC = () => {
   const { t } = useTranslation();
@@ -32,13 +32,12 @@ const FamilyFinancialStep: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
     watch,
     setValue,
   } = useForm<FamilyFinancialStep>({
     defaultValues: {
       familyInfo: {
-        maritalStatus: formData.familyInfo?.maritalStatus || MaritalStatus.SINGLE,
+        maritalStatus: formData.familyInfo?.maritalStatus || MARITAL_STATUS.SINGLE,
         numberOfDependents: formData.familyInfo?.numberOfDependents || 0,
         dependentDetails: formData.familyInfo?.dependentDetails || [],
       },
@@ -49,11 +48,11 @@ const FamilyFinancialStep: React.FC = () => {
         savingsAmount: formData.financialInfo?.savingsAmount || 0,
         hasDebts: formData.financialInfo?.hasDebts || false,
         debtAmount: formData.financialInfo?.debtAmount || 0,
-        housingStatus: formData.financialInfo?.housingStatus || HousingStatus.RENTED,
+        housingStatus: formData.financialInfo?.housingStatus || HOUSING_STATUS.RENTED,
         otherIncomeSources: formData.financialInfo?.otherIncomeSources || [],
       },
       employmentInfo: {
-        employmentStatus: formData.employmentInfo?.employmentStatus || EmploymentStatus.UNEMPLOYED,
+        employmentStatus: formData.employmentInfo?.employmentStatus || EMPLOYMENT_STATUS.UNEMPLOYED,
         employerName: formData.employmentInfo?.employerName || "",
         jobTitle: formData.employmentInfo?.jobTitle || "",
         workExperience: formData.employmentInfo?.workExperience || 0,
@@ -147,19 +146,19 @@ const FamilyFinancialStep: React.FC = () => {
                 {...register("familyInfo.maritalStatus")}
                 className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value={MaritalStatus.SINGLE}>
+                <option value={MARITAL_STATUS.SINGLE}>
                   {t("options.maritalStatus.single")}
                 </option>
-                <option value={MaritalStatus.MARRIED}>
+                <option value={MARITAL_STATUS.MARRIED}>
                   {t("options.maritalStatus.married")}
                 </option>
-                <option value={MaritalStatus.DIVORCED}>
+                <option value={MARITAL_STATUS.DIVORCED}>
                   {t("options.maritalStatus.divorced")}
                 </option>
-                <option value={MaritalStatus.WIDOWED}>
+                <option value={MARITAL_STATUS.WIDOWED}>
                   {t("options.maritalStatus.widowed")}
                 </option>
-                <option value={MaritalStatus.SEPARATED}>
+                <option value={MARITAL_STATUS.SEPARATED}>
                   {t("options.maritalStatus.separated")}
                 </option>
               </select>
@@ -169,7 +168,7 @@ const FamilyFinancialStep: React.FC = () => {
               name="familyInfo.numberOfDependents"
               label={t("fields.numberOfDependents")}
               type="number"
-              value={watchedValues.familyInfo?.numberOfDependents || 0}
+              value={String(watchedValues.familyInfo?.numberOfDependents || 0)}
               onChange={(value) =>
                 handleFieldChange("familyInfo.numberOfDependents", parseInt(value) || 0)
               }
@@ -189,7 +188,7 @@ const FamilyFinancialStep: React.FC = () => {
               name="financialInfo.monthlyIncome"
               label={t("fields.monthlyIncome")}
               type="number"
-              value={watchedValues.financialInfo?.monthlyIncome || 0}
+              value={String(watchedValues.financialInfo?.monthlyIncome || 0)}
               onChange={(value) =>
                 handleFieldChange("financialInfo.monthlyIncome", parseFloat(value) || 0)
               }
@@ -220,19 +219,19 @@ const FamilyFinancialStep: React.FC = () => {
                 {...register("financialInfo.housingStatus")}
                 className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value={HousingStatus.OWNED}>
+                <option value={HOUSING_STATUS.OWNED}>
                   {t("options.housingStatus.owned")}
                 </option>
-                <option value={HousingStatus.RENTED}>
+                <option value={HOUSING_STATUS.RENTED}>
                   {t("options.housingStatus.rented")}
                 </option>
-                <option value={HousingStatus.SHARED}>
+                <option value={HOUSING_STATUS.SHARED}>
                   {t("options.housingStatus.shared")}
                 </option>
-                <option value={HousingStatus.TEMPORARY}>
+                <option value={HOUSING_STATUS.TEMPORARY}>
                   {t("options.housingStatus.temporary")}
                 </option>
-                <option value={HousingStatus.HOMELESS}>
+                <option value={HOUSING_STATUS.HOMELESS}>
                   {t("options.housingStatus.homeless")}
                 </option>
               </select>
@@ -280,22 +279,22 @@ const FamilyFinancialStep: React.FC = () => {
                 {...register("employmentInfo.employmentStatus")}
                 className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value={EmploymentStatus.EMPLOYED}>
+                <option value={EMPLOYMENT_STATUS.EMPLOYED}>
                   {t("options.employmentStatus.employed")}
                 </option>
-                <option value={EmploymentStatus.UNEMPLOYED}>
+                <option value={EMPLOYMENT_STATUS.UNEMPLOYED}>
                   {t("options.employmentStatus.unemployed")}
                 </option>
-                <option value={EmploymentStatus.SELF_EMPLOYED}>
+                <option value={EMPLOYMENT_STATUS.SELF_EMPLOYED}>
                   {t("options.employmentStatus.selfEmployed")}
                 </option>
-                <option value={EmploymentStatus.STUDENT}>
+                <option value={EMPLOYMENT_STATUS.STUDENT}>
                   {t("options.employmentStatus.student")}
                 </option>
-                <option value={EmploymentStatus.RETIRED}>
+                <option value={EMPLOYMENT_STATUS.RETIRED}>
                   {t("options.employmentStatus.retired")}
                 </option>
-                <option value={EmploymentStatus.DISABLED}>
+                <option value={EMPLOYMENT_STATUS.DISABLED}>
                   {t("options.employmentStatus.disabled")}
                 </option>
               </select>
@@ -305,7 +304,7 @@ const FamilyFinancialStep: React.FC = () => {
               name="employmentInfo.workExperience"
               label={t("fields.workExperience")}
               type="number"
-              value={watchedValues.employmentInfo?.workExperience || 0}
+              value={String(watchedValues.employmentInfo?.workExperience || 0)}
               onChange={(value) =>
                 handleFieldChange("employmentInfo.workExperience", parseInt(value) || 0)
               }

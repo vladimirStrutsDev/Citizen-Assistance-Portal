@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import type { RootState } from "@/core/store";
+import type { RootState } from "../../../core/store";
 import {
   clearValidationError,
   setValidationError,
@@ -12,16 +12,16 @@ import {
   submitFormSuccess,
   submitFormFailure,
   previousStep,
-} from "@/core/store/slices/assistanceRequestSlice";
+} from "../../../core/store/slices/assistanceRequestSlice";
 
-import Button from "@/shared/components/ui/Button";
-import ModalDialog from "@/shared/components/ui/ModalDialog";
+import Button from "../../../shared/components/Button";
+import ModalDialog from "../../../shared/components/ModalDialog";
+import { type RequestDetailsStep } from "../types";
 import {
-  type RequestDetailsStep,
-  AssistanceType,
-  UrgencyLevel,
-} from "../types";
-import { getAIAssistance } from "@/api/openai";
+  ASSISTANCE_TYPE,
+  URGENCY_LEVEL,
+} from "../../constants/const";
+import { getAIAssistance } from "../../../api/openai";
 
 const RequestDetailsStep: React.FC = () => {
   const { t } = useTranslation();
@@ -44,14 +44,13 @@ const RequestDetailsStep: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
     watch,
     setValue,
   } = useForm<RequestDetailsStep>({
     defaultValues: {
-      requestType: formData.requestType || AssistanceType.FINANCIAL_AID,
+      requestType: formData.requestType || ASSISTANCE_TYPE.FINANCIAL_AID,
       description: formData.description || "",
-      urgencyLevel: formData.urgencyLevel || UrgencyLevel.MEDIUM,
+      urgencyLevel: formData.urgencyLevel || URGENCY_LEVEL.MEDIUM,
       supportingDocuments: formData.supportingDocuments || [],
     },
   });
@@ -103,7 +102,7 @@ const RequestDetailsStep: React.FC = () => {
         navigate("/success");
       } catch (error) {
         dispatch(
-          submitFormFailure("Failed to submit request. Please try again.")
+          submitFormFailure(t("errors.submissionError"))
         );
       }
     }
@@ -134,7 +133,7 @@ const RequestDetailsStep: React.FC = () => {
       setAISuggestion(aiSuggestion);
     } catch (error) {
       setAISuggestion(
-        "Sorry, I couldn't generate a suggestion at this time. Please try again."
+        t("errors.aiGenerationError")
       );
     } finally {
       setIsGeneratingAI(false);
@@ -199,22 +198,22 @@ const RequestDetailsStep: React.FC = () => {
                 {...register("requestType")}
                 className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value={AssistanceType.FINANCIAL_AID}>
+                <option value={ASSISTANCE_TYPE.FINANCIAL_AID}>
                   {t("options.assistanceType.financialAid")}
                 </option>
-                <option value={AssistanceType.HOUSING_ASSISTANCE}>
+                <option value={ASSISTANCE_TYPE.HOUSING_ASSISTANCE}>
                   {t("options.assistanceType.housingAssistance")}
                 </option>
-                <option value={AssistanceType.MEDICAL_SUPPORT}>
+                <option value={ASSISTANCE_TYPE.MEDICAL_SUPPORT}>
                   {t("options.assistanceType.medicalSupport")}
                 </option>
-                <option value={AssistanceType.FOOD_ASSISTANCE}>
+                <option value={ASSISTANCE_TYPE.FOOD_ASSISTANCE}>
                   {t("options.assistanceType.foodAssistance")}
                 </option>
-                <option value={AssistanceType.EDUCATION_SUPPORT}>
+                <option value={ASSISTANCE_TYPE.EDUCATION_SUPPORT}>
                   {t("options.assistanceType.educationSupport")}
                 </option>
-                <option value={AssistanceType.EMPLOYMENT_SERVICES}>
+                <option value={ASSISTANCE_TYPE.EMPLOYMENT_SERVICES}>
                   {t("options.assistanceType.employmentServices")}
                 </option>
               </select>
@@ -229,16 +228,16 @@ const RequestDetailsStep: React.FC = () => {
                 {...register("urgencyLevel")}
                 className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value={UrgencyLevel.LOW}>
+                <option value={URGENCY_LEVEL.LOW}>
                   {t("options.urgencyLevel.low")}
                 </option>
-                <option value={UrgencyLevel.MEDIUM}>
+                <option value={URGENCY_LEVEL.MEDIUM}>
                   {t("options.urgencyLevel.medium")}
                 </option>
-                <option value={UrgencyLevel.HIGH}>
+                <option value={URGENCY_LEVEL.HIGH}>
                   {t("options.urgencyLevel.high")}
                 </option>
-                <option value={UrgencyLevel.CRITICAL}>
+                <option value={URGENCY_LEVEL.CRITICAL}>
                   {t("options.urgencyLevel.critical")}
                 </option>
               </select>

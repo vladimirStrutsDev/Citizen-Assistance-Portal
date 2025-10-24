@@ -2,8 +2,8 @@ import React, { Suspense, lazy } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import PersonalInformationStep from "./PersonalInformationStep";
-import type { RootState } from "@/core/store";
-import ProgressIndicator from "@/shared/components/ui/ProgressIndicator";
+import type { RootState } from "../../../core/store";
+import ProgressIndicator from "../../../shared/components/ProgressIndicator";
 
 const FamilyFinancialStep = lazy(() => import("./FamilyFinancialStep"));
 const RequestDetailsStep = lazy(() => import("./RequestDetailsStep"));
@@ -26,13 +26,13 @@ const AssistanceRequestWizard: React.FC = () => {
         return <PersonalInformationStep />;
       case 2:
         return (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div>{t("success.loading")}</div>}>
             <FamilyFinancialStep />
           </Suspense>
         );
       case 3:
         return (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div>{t("success.loading")}</div>}>
             <RequestDetailsStep />
           </Suspense>
         );
@@ -121,18 +121,17 @@ const AssistanceRequestWizard: React.FC = () => {
           </div>
           <div>
             <h3 className="text-sm font-medium text-blue-900 mb-1">
-              Need Help?
+              {t("success.needHelp")}
             </h3>
             <p className="text-sm text-blue-700">
-              If you have any questions or need assistance filling out this
-              form, please contact our support team at{" "}
+              {t("success.needHelpDescription")}{" "}
               <a
                 href="tel:+1234567890"
                 className="font-medium underline hover:text-blue-900"
               >
                 +1 (234) 567-890
               </a>{" "}
-              or email us at{" "}
+              {t("success.orEmailUs")}{" "}
               <a
                 href="mailto:support@citizenassistance.gov"
                 className="font-medium underline hover:text-blue-900"

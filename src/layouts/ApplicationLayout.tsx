@@ -50,7 +50,7 @@ const ApplicationLayout: React.FC = () => {
             {/* Language Switcher */}
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-500 hidden sm:inline">
-                Language:
+                {t("language.language")}
               </span>
               <div className="flex bg-gray-100 rounded-lg p-1">
                 <button
@@ -61,7 +61,7 @@ const ApplicationLayout: React.FC = () => {
                       : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
-                  English
+                  {t("language.english")}
                 </button>
                 <button
                   onClick={() => handleLanguageChange("ar")}
@@ -71,7 +71,7 @@ const ApplicationLayout: React.FC = () => {
                       : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
-                  العربية
+                  {t("language.arabic")}
                 </button>
               </div>
             </div>
@@ -92,11 +92,10 @@ const ApplicationLayout: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
               <p className="text-sm text-gray-600">
-                &copy; {new Date().getFullYear()} Citizen Assistance Portal. All
-                rights reserved.
+                {t("footer.copyright", { year: new Date().getFullYear() })}
               </p>
               <p className="text-xs text-gray-500 mt-1">
-                Providing essential support services to our community
+                {t("footer.tagline")}
               </p>
             </div>
 
@@ -105,19 +104,19 @@ const ApplicationLayout: React.FC = () => {
                 href="#"
                 className="text-sm text-gray-500 hover:text-gray-700 transition-colors duration-200"
               >
-                Privacy Policy
+                {t("footer.privacyPolicy")}
               </a>
               <a
                 href="#"
                 className="text-sm text-gray-500 hover:text-gray-700 transition-colors duration-200"
               >
-                Terms of Service
+                {t("footer.termsOfService")}
               </a>
               <a
                 href="#"
                 className="text-sm text-gray-500 hover:text-gray-700 transition-colors duration-200"
               >
-                Contact Support
+                {t("footer.contactSupport")}
               </a>
             </div>
           </div>
