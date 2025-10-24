@@ -1,11 +1,12 @@
 import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { type RequestDetailsStep, ASSISTANCE_TYPE, URGENCY_LEVEL } from "../types";
+import { type RequestDetailsFormData } from "../../../schemas/validation";
+import { ASSISTANCE_TYPE, URGENCY_LEVEL } from "../types";
 
 const RequestTypeSection: FC = () => {
   const { t } = useTranslation();
-  const { register } = useFormContext<RequestDetailsStep>();
+  const { register, formState: { errors } } = useFormContext<RequestDetailsFormData>();
 
   return (
     <div className="space-y-6">
@@ -37,6 +38,9 @@ const RequestTypeSection: FC = () => {
             {t("options.assistanceType.employmentServices")}
           </option>
         </select>
+        {errors.requestType && (
+          <p className="text-sm text-red-600">{errors.requestType.message}</p>
+        )}
       </div>
 
       <div className="space-y-1">
@@ -61,6 +65,9 @@ const RequestTypeSection: FC = () => {
             {t("options.urgencyLevel.critical")}
           </option>
         </select>
+        {errors.urgencyLevel && (
+          <p className="text-sm text-red-600">{errors.urgencyLevel.message}</p>
+        )}
       </div>
     </div>
   );

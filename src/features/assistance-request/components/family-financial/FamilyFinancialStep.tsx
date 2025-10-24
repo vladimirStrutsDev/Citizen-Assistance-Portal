@@ -1,22 +1,21 @@
 import type { FC } from "react";
 import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import type { RootState } from "../../../../core/store";
 import {
-  clearValidationError,
-  setValidationError,
   updateFamilyFinancialInfo,
   nextStep,
   previousStep,
 } from "../../../../core/store/slices/assistanceRequestSlice";
 import Button from "../../../../shared/components/Button/Button";
 import { 
-  type FamilyFinancialStep,
   MARITAL_STATUS,
   HOUSING_STATUS,
   EMPLOYMENT_STATUS,
 } from "./types";
+import { familyFinancialSchema, type FamilyFinancialFormData } from "../../schemas/validation";
 import FamilyInformationSection from "./components/FamilyInformationSection";
 import FinancialInformationSection from "./components/FinancialInformationSection";
 import EmploymentInformationSection from "./components/EmploymentInformationSection";
@@ -27,11 +26,9 @@ const FamilyFinancialStep: FC = () => {
   const formData = useSelector(
     (state: RootState) => state.assistanceRequest.formData
   );
-  const validationErrors = useSelector(
-    (state: RootState) => state.assistanceRequest.validationErrors
-  );
 
-  const methods = useForm<FamilyFinancialStep>({
+  const methods = useForm<FamilyFinancialFormData>({
+    resolver: zodResolver(familyFinancialSchema),
     defaultValues: {
       familyInfo: {
         maritalStatus: formData.familyInfo?.maritalStatus || MARITAL_STATUS.SINGLE,
@@ -59,54 +56,13 @@ const FamilyFinancialStep: FC = () => {
     },
   });
 
-  const validateForm = (data: FamilyFinancialStep): boolean => {
-    let isValid = true;
-    const newErrors: Record<string, string> = {};
-
-    Object.keys(validationErrors).forEach((field) => {
-      if (field.startsWith("familyFinancial.")) {
-        dispatch(clearValidationError(field));
-      }
-    });
-
-    if (data.financialInfo.monthlyIncome < 0) {
-      newErrors["familyFinancial.financialInfo.monthlyIncome"] = t(
-        "validation.mustBeNumber"
-      );
-      isValid = false;
-    }
-
-    if (data.employmentInfo.workExperience < 0) {
-      newErrors["familyFinancial.employmentInfo.workExperience"] = t(
-        "validation.mustBeNumber"
-      );
-      isValid = false;
-    }
-
-    Object.entries(newErrors).forEach(([field, error]) => {
-      dispatch(setValidationError({ field, error }));
-    });
-
-    return isValid;
-  };
-
-  const onSubmit = (data: FamilyFinancialStep) => {
-    if (validateForm(data)) {
-      dispatch(updateFamilyFinancialInfo(data));
-      dispatch(nextStep());
-    }
+  const onSubmit = (data: FamilyFinancialFormData) => {
+    dispatch(updateFamilyFinancialInfo(data));
+    dispatch(nextStep());
   };
 
   const handleBack = () => {
     dispatch(previousStep());
-  };
-
-  const handleFieldChange = (field: string, value: any) => {
-    methods.setValue(field as keyof FamilyFinancialStep, value);
-    const errorField = `familyFinancial.${field}`;
-    if (validationErrors[errorField]) {
-      dispatch(clearValidationError(errorField));
-    }
   };
 
   return (
@@ -122,20 +78,11 @@ const FamilyFinancialStep: FC = () => {
         </div>
 
         <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
-          <FamilyInformationSection
-            validationErrors={validationErrors}
-            onFieldChange={handleFieldChange}
-          />
+          <FamilyInformationSection />
 
-          <FinancialInformationSection
-            validationErrors={validationErrors}
-            onFieldChange={handleFieldChange}
-          />
+          <FinancialInformationSection />
 
-          <EmploymentInformationSection
-            validationErrors={validationErrors}
-            onFieldChange={handleFieldChange}
-          />
+          <EmploymentInformationSection />
 
           <div className="flex justify-between pt-6">
             <Button

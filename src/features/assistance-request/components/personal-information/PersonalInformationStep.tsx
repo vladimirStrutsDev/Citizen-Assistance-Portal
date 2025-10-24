@@ -1,16 +1,16 @@
 import type { FC } from "react";
 import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import type { RootState } from "../../../../core/store";
 import {
-  clearValidationError,
-  setValidationError,
   updatePersonalInfo,
   nextStep,
 } from "../../../../core/store/slices/assistanceRequestSlice";
 import Button from "../../../../shared/components/Button/Button";
-import { type PersonalInfoStep, GENDER } from "./types";
+import { GENDER } from "./types";
+import { personalInfoSchema, type PersonalInfoFormData } from "../../schemas/validation";
 import PersonalDetailsSection from "./components/PersonalDetailsSection";
 import ContactInformationSection from "./components/ContactInformationSection";
 import AddressInformationSection from "./components/AddressInformationSection";
@@ -21,11 +21,9 @@ const PersonalInformationStep: FC = () => {
   const formData = useSelector(
     (state: RootState) => state.assistanceRequest.formData
   );
-  const validationErrors = useSelector(
-    (state: RootState) => state.assistanceRequest.validationErrors
-  );
 
-  const methods = useForm<PersonalInfoStep>({
+  const methods = useForm<PersonalInfoFormData>({
+    resolver: zodResolver(personalInfoSchema),
     defaultValues: {
       fullName: formData.fullName || "",
       nationalId: formData.nationalId || "",
@@ -33,6 +31,7 @@ const PersonalInformationStep: FC = () => {
       gender: formData.gender || GENDER.MALE,
       contactInfo: {
         primaryPhone: formData.contactInfo?.primaryPhone || "",
+        secondaryPhone: formData.contactInfo?.secondaryPhone || "",
         emailAddress: formData.contactInfo?.emailAddress || "",
         preferredContactMethod:
           formData.contactInfo?.preferredContactMethod || "phone",
@@ -48,94 +47,9 @@ const PersonalInformationStep: FC = () => {
     },
   });
 
-  const validateForm = (data: PersonalInfoStep): boolean => {
-    let isValid = true;
-    const newErrors: Record<string, string> = {};
-
-    Object.keys(validationErrors).forEach((field) => {
-      if (field.startsWith("personalInfo.")) {
-        dispatch(clearValidationError(field));
-      }
-    });
-
-    if (!data.fullName.trim()) {
-      newErrors["personalInfo.fullName"] = t("validation.fullNameRequired");
-      isValid = false;
-    }
-
-    if (!data.nationalId.trim()) {
-      newErrors["personalInfo.nationalId"] = t("validation.nationalIdRequired");
-      isValid = false;
-    }
-
-    if (!data.dateOfBirth) {
-      newErrors["personalInfo.dateOfBirth"] = t(
-        "validation.dateOfBirthRequired"
-      );
-      isValid = false;
-    }
-
-    if (!data.contactInfo.primaryPhone.trim()) {
-      newErrors["personalInfo.contactInfo.primaryPhone"] = t(
-        "validation.phoneRequired"
-      );
-      isValid = false;
-    }
-
-    if (!data.contactInfo.emailAddress.trim()) {
-      newErrors["personalInfo.contactInfo.emailAddress"] = t(
-        "validation.emailRequired"
-      );
-      isValid = false;
-    } else if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contactInfo.emailAddress)
-    ) {
-      newErrors["personalInfo.contactInfo.emailAddress"] = t(
-        "validation.emailInvalid"
-      );
-      isValid = false;
-    }
-
-    if (!data.address.streetAddress.trim()) {
-      newErrors["personalInfo.address.streetAddress"] = t(
-        "validation.addressRequired"
-      );
-      isValid = false;
-    }
-
-    if (!data.address.city.trim()) {
-      newErrors["personalInfo.address.city"] = t("validation.cityRequired");
-      isValid = false;
-    }
-
-    if (!data.address.country.trim()) {
-      newErrors["personalInfo.address.country"] = t(
-        "validation.countryRequired"
-      );
-      isValid = false;
-    }
-
-    Object.entries(newErrors).forEach(([field, error]) => {
-      dispatch(setValidationError({ field, error }));
-    });
-
-    return isValid;
-  };
-
-  const onSubmit = (data: PersonalInfoStep) => {
-    if (validateForm(data)) {
-      dispatch(updatePersonalInfo(data));
-      dispatch(nextStep());
-    }
-  };
-
-  const handleFieldChange = (field: string, value: any) => {
-    methods.setValue(field as keyof PersonalInfoStep, value);
-
-    const errorField = `personalInfo.${field}`;
-    if (validationErrors[errorField]) {
-      dispatch(clearValidationError(errorField));
-    }
+  const onSubmit = (data: PersonalInfoFormData) => {
+    dispatch(updatePersonalInfo(data));
+    dispatch(nextStep());
   };
 
   return (
@@ -151,20 +65,11 @@ const PersonalInformationStep: FC = () => {
         </div>
 
         <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
-          <PersonalDetailsSection
-            validationErrors={validationErrors}
-            onFieldChange={handleFieldChange}
-          />
+          <PersonalDetailsSection />
 
-          <ContactInformationSection
-            validationErrors={validationErrors}
-            onFieldChange={handleFieldChange}
-          />
+          <ContactInformationSection />
 
-          <AddressInformationSection
-            validationErrors={validationErrors}
-            onFieldChange={handleFieldChange}
-          />
+          <AddressInformationSection />
 
           <div className="flex justify-end pt-6">
             <Button type="submit" size="lg">

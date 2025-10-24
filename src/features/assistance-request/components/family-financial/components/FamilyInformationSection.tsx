@@ -2,21 +2,12 @@ import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormInput from "../../../../../shared/components/FormInput/FormInput";
-import { type FamilyFinancialStep, MARITAL_STATUS } from "../types";
+import { type FamilyFinancialFormData } from "../../../schemas/validation";
+import { MARITAL_STATUS } from "../types";
 
-interface IProps {
-  validationErrors: Record<string, string>;
-  onFieldChange: (field: string, value: any) => void;
-}
-
-const FamilyInformationSection: FC<IProps> = ({
-  validationErrors,
-  onFieldChange,
-}) => {
+const FamilyInformationSection: FC = () => {
   const { t } = useTranslation();
-  const { register, watch } = useFormContext<FamilyFinancialStep>();
-
-  const watchedValues = watch();
+  const { register, formState: { errors } } = useFormContext<FamilyFinancialFormData>();
 
   return (
     <div className="bg-gray-50 p-6 rounded-lg">
@@ -50,17 +41,18 @@ const FamilyInformationSection: FC<IProps> = ({
               {t("options.maritalStatus.separated")}
             </option>
           </select>
+          {errors.familyInfo?.maritalStatus && (
+            <p className="text-sm text-red-600">{errors.familyInfo.maritalStatus.message}</p>
+          )}
         </div>
 
         <FormInput
           name="familyInfo.numberOfDependents"
           label={t("fields.numberOfDependents")}
           type="number"
-          value={String(watchedValues.familyInfo?.numberOfDependents || 0)}
-          onChange={(value) =>
-            onFieldChange("familyInfo.numberOfDependents", parseInt(value) || 0)
-          }
-          error={validationErrors["familyFinancial.familyInfo.numberOfDependents"]}
+          min={0}
+          register={register("familyInfo.numberOfDependents", { valueAsNumber: true })}
+          fieldError={errors.familyInfo?.numberOfDependents}
         />
       </div>
     </div>

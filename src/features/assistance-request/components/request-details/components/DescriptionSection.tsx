@@ -2,23 +2,18 @@ import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import Button from "../../../../../shared/components/Button/Button";
-import { type RequestDetailsStep } from "../types";
+import FormInput from "../../../../../shared/components/FormInput/FormInput";
+import { type RequestDetailsFormData } from "../../../schemas/validation";
 
 interface IProps {
-  validationErrors: Record<string, string>;
-  onFieldChange: (field: string, value: any) => void;
   onOpenAIModal: () => void;
 }
 
 const DescriptionSection: FC<IProps> = ({
-  validationErrors,
-  onFieldChange,
   onOpenAIModal,
 }) => {
   const { t } = useTranslation();
-  const { register, watch } = useFormContext<RequestDetailsStep>();
-
-  const watchedValues = watch();
+  const { register, formState: { errors } } = useFormContext<RequestDetailsFormData>();
 
   return (
     <div className="space-y-2">
@@ -37,22 +32,16 @@ const DescriptionSection: FC<IProps> = ({
         </Button>
       </div>
 
-      <textarea
-        {...register("description")}
+      <FormInput
+        name="description"
+        label=""
+        type="textarea"
         rows={6}
-        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
         placeholder={t("fields.descriptionPlaceholder")}
-        value={watchedValues.description || ""}
-        onChange={(e) =>
-          onFieldChange("description", e.target.value)
-        }
+        isRequired
+        register={register("description")}
+        fieldError={errors.description}
       />
-
-      {validationErrors["requestDetails.description"] && (
-        <p className="text-sm text-red-600">
-          {validationErrors["requestDetails.description"]}
-        </p>
-      )}
 
       <p className="text-xs text-gray-500">
         {t("fields.descriptionHelp")}

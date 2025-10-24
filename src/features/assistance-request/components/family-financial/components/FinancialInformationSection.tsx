@@ -2,21 +2,12 @@ import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormInput from "../../../../../shared/components/FormInput/FormInput";
-import { type FamilyFinancialStep, HOUSING_STATUS } from "../types";
+import { type FamilyFinancialFormData } from "../../../schemas/validation";
+import { HOUSING_STATUS } from "../types";
 
-interface IProps {
-  validationErrors: Record<string, string>;
-  onFieldChange: (field: string, value: any) => void;
-}
-
-const FinancialInformationSection: FC<IProps> = ({
-  validationErrors,
-  onFieldChange,
-}) => {
+const FinancialInformationSection: FC = () => {
   const { t } = useTranslation();
-  const { register, watch } = useFormContext<FamilyFinancialStep>();
-
-  const watchedValues = watch();
+  const { register, formState: { errors } } = useFormContext<FamilyFinancialFormData>();
 
   return (
     <div className="bg-gray-50 p-6 rounded-lg">
@@ -29,11 +20,9 @@ const FinancialInformationSection: FC<IProps> = ({
           name="financialInfo.monthlyIncome"
           label={t("fields.monthlyIncome")}
           type="number"
-          value={String(watchedValues.financialInfo?.monthlyIncome || 0)}
-          onChange={(value) =>
-            onFieldChange("financialInfo.monthlyIncome", parseFloat(value) || 0)
-          }
-          error={validationErrors["familyFinancial.financialInfo.monthlyIncome"]}
+          min={0}
+          register={register("financialInfo.monthlyIncome", { valueAsNumber: true })}
+          fieldError={errors.financialInfo?.monthlyIncome}
         />
 
         <div className="space-y-1">
@@ -49,6 +38,9 @@ const FinancialInformationSection: FC<IProps> = ({
             <option value="GBP">GBP</option>
             <option value="AED">AED</option>
           </select>
+          {errors.financialInfo?.currency && (
+            <p className="text-sm text-red-600">{errors.financialInfo.currency.message}</p>
+          )}
         </div>
 
         <div className="space-y-1">
@@ -76,6 +68,9 @@ const FinancialInformationSection: FC<IProps> = ({
               {t("options.housingStatus.homeless")}
             </option>
           </select>
+          {errors.financialInfo?.housingStatus && (
+            <p className="text-sm text-red-600">{errors.financialInfo.housingStatus.message}</p>
+          )}
         </div>
 
         <div className="space-y-4">

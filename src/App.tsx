@@ -1,18 +1,10 @@
-import { Routes, Route } from "react-router-dom";
-import ApplicationLayout from "./layouts/ApplicationLayout";
-import RequestSubmissionSuccess from "./features/assistance-request/components/request-submission-success/RequestSubmissionSuccess";
+import { useRoutes } from "react-router-dom";
 import type { FC } from "react";
-import AssistanceRequestStepper from "./features/assistance-request/components/AssistanceRequestStepper";
+import { routes } from "./routes";
 
 const App: FC = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<ApplicationLayout />}>
-        <Route index element={<AssistanceRequestStepper />} />
-        <Route path="success" element={<RequestSubmissionSuccess />} />
-      </Route>
-    </Routes>
-  );
+  const element = useRoutes(routes);
+  return element;
 };
 
 export default App;

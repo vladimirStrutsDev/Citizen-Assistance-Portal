@@ -2,21 +2,12 @@ import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormInput from "../../../../../shared/components/FormInput/FormInput";
-import { type PersonalInfoStep, GENDER } from "../types";
+import { type PersonalInfoFormData } from "../../../schemas/validation";
+import { GENDER } from "../types";
 
-interface IProps {
-  validationErrors: Record<string, string>;
-  onFieldChange: (field: string, value: any) => void;
-}
-
-const PersonalDetailsSection: FC<IProps> = ({
-  validationErrors,
-  onFieldChange,
-}) => {
+const PersonalDetailsSection: FC = () => {
   const { t } = useTranslation();
-  const { register, watch } = useFormContext<PersonalInfoStep>();
-
-  const watchedValues = watch();
+  const { register, formState: { errors } } = useFormContext<PersonalInfoFormData>();
 
   return (
     <div className="bg-gray-50 p-6 rounded-lg">
@@ -28,29 +19,28 @@ const PersonalDetailsSection: FC<IProps> = ({
         <FormInput
           name="fullName"
           label={t("fields.fullName")}
-          value={watchedValues.fullName}
-          onChange={(value) => onFieldChange("fullName", value)}
-          error={validationErrors["personalInfo.fullName"]}
+          type="text"
           isRequired
+          register={register("fullName")}
+          fieldError={errors.fullName}
         />
 
         <FormInput
           name="nationalId"
           label={t("fields.nationalId")}
-          value={watchedValues.nationalId}
-          onChange={(value) => onFieldChange("nationalId", value)}
-          error={validationErrors["personalInfo.nationalId"]}
+          type="text"
           isRequired
+          register={register("nationalId")}
+          fieldError={errors.nationalId}
         />
 
         <FormInput
           name="dateOfBirth"
           label={t("fields.dateOfBirth")}
           type="date"
-          value={watchedValues.dateOfBirth}
-          onChange={(value) => onFieldChange("dateOfBirth", value)}
-          error={validationErrors["personalInfo.dateOfBirth"]}
           isRequired
+          register={register("dateOfBirth")}
+          fieldError={errors.dateOfBirth}
         />
 
         <div className="space-y-1">
@@ -73,6 +63,9 @@ const PersonalDetailsSection: FC<IProps> = ({
               {t("options.gender.preferNotToSay")}
             </option>
           </select>
+          {errors.gender && (
+            <p className="text-sm text-red-600">{errors.gender.message}</p>
+          )}
         </div>
       </div>
     </div>

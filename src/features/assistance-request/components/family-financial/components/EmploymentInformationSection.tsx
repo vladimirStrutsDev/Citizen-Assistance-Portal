@@ -2,21 +2,12 @@ import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormInput from "../../../../../shared/components/FormInput/FormInput";
-import { type FamilyFinancialStep, EMPLOYMENT_STATUS } from "../types";
+import { type FamilyFinancialFormData } from "../../../schemas/validation";
+import { EMPLOYMENT_STATUS } from "../types";
 
-interface IProps {
-  validationErrors: Record<string, string>;
-  onFieldChange: (field: string, value: any) => void;
-}
-
-const EmploymentInformationSection: FC<IProps> = ({
-  validationErrors,
-  onFieldChange,
-}) => {
+const EmploymentInformationSection: FC = () => {
   const { t } = useTranslation();
-  const { register, watch } = useFormContext<FamilyFinancialStep>();
-
-  const watchedValues = watch();
+  const { register, formState: { errors } } = useFormContext<FamilyFinancialFormData>();
 
   return (
     <div className="bg-gray-50 p-6 rounded-lg">
@@ -53,35 +44,34 @@ const EmploymentInformationSection: FC<IProps> = ({
               {t("options.employmentStatus.disabled")}
             </option>
           </select>
+          {errors.employmentInfo?.employmentStatus && (
+            <p className="text-sm text-red-600">{errors.employmentInfo.employmentStatus.message}</p>
+          )}
         </div>
 
         <FormInput
           name="employmentInfo.workExperience"
           label={t("fields.workExperience")}
           type="number"
-          value={String(watchedValues.employmentInfo?.workExperience || 0)}
-          onChange={(value) =>
-            onFieldChange("employmentInfo.workExperience", parseInt(value) || 0)
-          }
-          error={validationErrors["familyFinancial.employmentInfo.workExperience"]}
+          min={0}
+          register={register("employmentInfo.workExperience", { valueAsNumber: true })}
+          fieldError={errors.employmentInfo?.workExperience}
         />
 
         <FormInput
           name="employmentInfo.employerName"
           label={t("fields.employerName")}
-          value={watchedValues.employmentInfo?.employerName || ""}
-          onChange={(value) =>
-            onFieldChange("employmentInfo.employerName", value)
-          }
+          type="text"
+          register={register("employmentInfo.employerName")}
+          fieldError={errors.employmentInfo?.employerName}
         />
 
         <FormInput
           name="employmentInfo.jobTitle"
           label={t("fields.jobTitle")}
-          value={watchedValues.employmentInfo?.jobTitle || ""}
-          onChange={(value) =>
-            onFieldChange("employmentInfo.jobTitle", value)
-          }
+          type="text"
+          register={register("employmentInfo.jobTitle")}
+          fieldError={errors.employmentInfo?.jobTitle}
         />
       </div>
     </div>

@@ -6,7 +6,6 @@ interface AssistanceRequestState {
   formData: Record<string, any>;
   isLoading: boolean;
   error: string | null;
-  validationErrors: Record<string, string>;
 }
 
 const initialState: AssistanceRequestState = {
@@ -15,7 +14,6 @@ const initialState: AssistanceRequestState = {
   formData: {},
   isLoading: false,
   error: null,
-  validationErrors: {},
 };
 
 const assistanceRequestSlice = createSlice({
@@ -66,21 +64,6 @@ const assistanceRequestSlice = createSlice({
       state.formData[field] = value;
     },
 
-    setValidationError: (
-      state,
-      action: PayloadAction<{ field: string; error: string }>
-    ) => {
-      const { field, error } = action.payload;
-      state.validationErrors[field] = error;
-    },
-
-    clearValidationError: (state, action: PayloadAction<string>) => {
-      delete state.validationErrors[action.payload];
-    },
-
-    clearAllValidationErrors: (state) => {
-      state.validationErrors = {};
-    },
 
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
@@ -95,7 +78,6 @@ const assistanceRequestSlice = createSlice({
       state.formData = {};
       state.isLoading = false;
       state.error = null;
-      state.validationErrors = {};
     },
 
     submitFormStart: (state) => {
@@ -108,7 +90,6 @@ const assistanceRequestSlice = createSlice({
       state.error = null;
       state.currentStep = 1;
       state.formData = {};
-      state.validationErrors = {};
     },
 
     submitFormFailure: (state, action: PayloadAction<string>) => {
@@ -126,9 +107,6 @@ export const {
   updateFamilyFinancialInfo,
   updateRequestDetails,
   updateFormField,
-  setValidationError,
-  clearValidationError,
-  clearAllValidationErrors,
   setLoading,
   setError,
   resetForm,

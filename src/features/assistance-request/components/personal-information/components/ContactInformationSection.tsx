@@ -2,21 +2,11 @@ import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormInput from "../../../../../shared/components/FormInput/FormInput";
-import { type PersonalInfoStep } from "../types";
+import { type PersonalInfoFormData } from "../../../schemas/validation";
 
-interface IProps {
-  validationErrors: Record<string, string>;
-  onFieldChange: (field: string, value: any) => void;
-}
-
-const ContactInformationSection: FC<IProps> = ({
-  validationErrors,
-  onFieldChange,
-}) => {
+const ContactInformationSection: FC = () => {
   const { t } = useTranslation();
-  const { watch } = useFormContext<PersonalInfoStep>();
-
-  const watchedValues = watch();
+  const { register, formState: { errors } } = useFormContext<PersonalInfoFormData>();
 
   return (
     <div className="bg-gray-50 p-6 rounded-lg">
@@ -29,24 +19,18 @@ const ContactInformationSection: FC<IProps> = ({
           name="contactInfo.primaryPhone"
           label={t("fields.primaryPhone")}
           type="tel"
-          value={watchedValues.contactInfo?.primaryPhone || ""}
-          onChange={(value) =>
-            onFieldChange("contactInfo.primaryPhone", value)
-          }
-          error={validationErrors["personalInfo.contactInfo.primaryPhone"]}
           isRequired
+          register={register("contactInfo.primaryPhone")}
+          fieldError={errors.contactInfo?.primaryPhone}
         />
 
         <FormInput
           name="contactInfo.emailAddress"
           label={t("fields.emailAddress")}
           type="email"
-          value={watchedValues.contactInfo?.emailAddress || ""}
-          onChange={(value) =>
-            onFieldChange("contactInfo.emailAddress", value)
-          }
-          error={validationErrors["personalInfo.contactInfo.emailAddress"]}
           isRequired
+          register={register("contactInfo.emailAddress")}
+          fieldError={errors.contactInfo?.emailAddress}
         />
       </div>
     </div>

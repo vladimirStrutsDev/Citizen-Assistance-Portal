@@ -2,21 +2,11 @@ import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import FormInput from "../../../../../shared/components/FormInput/FormInput";
-import { type PersonalInfoStep } from "../types";
+import { type PersonalInfoFormData } from "../../../schemas/validation";
 
-interface IProps {
-  validationErrors: Record<string, string>;
-  onFieldChange: (field: string, value: any) => void;
-}
-
-const AddressInformationSection: FC<IProps> = ({
-  validationErrors,
-  onFieldChange,
-}) => {
+const AddressInformationSection: FC = () => {
   const { t } = useTranslation();
-  const { watch } = useFormContext<PersonalInfoStep>();
-
-  const watchedValues = watch();
+  const { register, formState: { errors } } = useFormContext<PersonalInfoFormData>();
 
   return (
     <div className="bg-gray-50 p-6 rounded-lg">
@@ -28,50 +18,46 @@ const AddressInformationSection: FC<IProps> = ({
         <FormInput
           name="address.streetAddress"
           label={t("fields.streetAddress")}
-          value={watchedValues.address?.streetAddress || ""}
-          onChange={(value) =>
-            onFieldChange("address.streetAddress", value)
-          }
-          error={validationErrors["personalInfo.address.streetAddress"]}
+          type="text"
           isRequired
+          register={register("address.streetAddress")}
+          fieldError={errors.address?.streetAddress}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <FormInput
             name="address.city"
             label={t("fields.city")}
-            value={watchedValues.address?.city || ""}
-            onChange={(value) => onFieldChange("address.city", value)}
-            error={validationErrors["personalInfo.address.city"]}
+            type="text"
             isRequired
+            register={register("address.city")}
+            fieldError={errors.address?.city}
           />
 
           <FormInput
             name="address.state"
             label={t("fields.state")}
-            value={watchedValues.address?.state || ""}
-            onChange={(value) => onFieldChange("address.state", value)}
+            type="text"
+            register={register("address.state")}
+            fieldError={errors.address?.state}
           />
 
           <FormInput
             name="address.country"
             label={t("fields.country")}
-            value={watchedValues.address?.country || ""}
-            onChange={(value) =>
-              onFieldChange("address.country", value)
-            }
-            error={validationErrors["personalInfo.address.country"]}
+            type="text"
             isRequired
+            register={register("address.country")}
+            fieldError={errors.address?.country}
           />
         </div>
 
         <FormInput
           name="address.postalCode"
           label={t("fields.postalCode")}
-          value={watchedValues.address?.postalCode || ""}
-          onChange={(value) =>
-            onFieldChange("address.postalCode", value)
-          }
+          type="text"
+          register={register("address.postalCode")}
+          fieldError={errors.address?.postalCode}
         />
       </div>
     </div>

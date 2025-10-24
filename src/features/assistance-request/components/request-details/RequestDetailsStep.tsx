@@ -1,13 +1,12 @@
 import { useState } from "react";
 import type { FC } from "react";
 import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import type { RootState } from "../../../../core/store";
 import {
-  clearValidationError,
-  setValidationError,
   updateRequestDetails,
   submitFormStart,
   submitFormSuccess,
@@ -16,10 +15,10 @@ import {
 } from "../../../../core/store/slices/assistanceRequestSlice";
 import Button from "../../../../shared/components/Button/Button";
 import { 
-  type RequestDetailsStep,
   ASSISTANCE_TYPE,
   URGENCY_LEVEL,
 } from "./types";
+import { requestDetailsSchema, type RequestDetailsFormData } from "../../schemas/validation";
 import { getAIAssistance } from "../../../../api/openai";
 import RequestTypeSection from "./components/RequestTypeSection";
 import DescriptionSection from "./components/DescriptionSection";
@@ -32,9 +31,6 @@ const RequestDetailsStep: FC = () => {
   const formData = useSelector(
     (state: RootState) => state.assistanceRequest.formData
   );
-  const validationErrors = useSelector(
-    (state: RootState) => state.assistanceRequest.validationErrors
-  );
   const isLoading = useSelector(
     (state: RootState) => state.assistanceRequest.isLoading
   );
@@ -43,7 +39,8 @@ const RequestDetailsStep: FC = () => {
   const [aiSuggestion, setAISuggestion] = useState("");
   const [isGeneratingAI, setIsGeneratingAI] = useState(false);
 
-  const methods = useForm<RequestDetailsStep>({
+  const methods = useForm<RequestDetailsFormData>({
+    resolver: zodResolver(requestDetailsSchema),
     defaultValues: {
       requestType: formData.requestType || ASSISTANCE_TYPE.FINANCIAL_AID,
       description: formData.description || "",
@@ -52,64 +49,24 @@ const RequestDetailsStep: FC = () => {
     },
   });
 
-  const validateForm = (data: RequestDetailsStep): boolean => {
-    let isValid = true;
-    const newErrors: Record<string, string> = {};
+  const onSubmit = async (data: RequestDetailsFormData) => {
+    dispatch(submitFormStart());
 
-    Object.keys(validationErrors).forEach((field) => {
-      if (field.startsWith("requestDetails.")) {
-        dispatch(clearValidationError(field));
-      }
-    });
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    if (!data.description.trim()) {
-      newErrors["requestDetails.description"] = t("validation.fieldRequired");
-      isValid = false;
-    }
-
-    if (data.description.trim().length < 50) {
-      newErrors["requestDetails.description"] = t("validation.minLength", {
-        min: 50,
-      });
-      isValid = false;
-    }
-
-    Object.entries(newErrors).forEach(([field, error]) => {
-      dispatch(setValidationError({ field, error }));
-    });
-
-    return isValid;
-  };
-
-  const onSubmit = async (data: RequestDetailsStep) => {
-    if (validateForm(data)) {
-      dispatch(submitFormStart());
-
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-
-        dispatch(updateRequestDetails(data));
-        dispatch(submitFormSuccess());
-        navigate("/success");
-      } catch (error) {
-        dispatch(
-          submitFormFailure(t("errors.submissionError"))
-        );
-      }
+      dispatch(updateRequestDetails(data));
+      dispatch(submitFormSuccess());
+      navigate("/success");
+    } catch (error) {
+      dispatch(
+        submitFormFailure(t("errors.submissionError"))
+      );
     }
   };
 
   const handleBack = () => {
     dispatch(previousStep());
-  };
-
-  const handleFieldChange = (field: string, value: any) => {
-    methods.setValue(field as keyof RequestDetailsStep, value);
-
-    const errorField = `requestDetails.${field}`;
-    if (validationErrors[errorField]) {
-      dispatch(clearValidationError(errorField));
-    }
   };
 
   const handleAIGenerate = async () => {
@@ -162,8 +119,6 @@ const RequestDetailsStep: FC = () => {
               <RequestTypeSection />
 
               <DescriptionSection
-                validationErrors={validationErrors}
-                onFieldChange={handleFieldChange}
                 onOpenAIModal={() => setIsAIModalOpen(true)}
               />
             </div>
