@@ -56,14 +56,12 @@ const RequestDetailsStep: FC = () => {
     let isValid = true;
     const newErrors: Record<string, string> = {};
 
-    // Clear previous validation errors
     Object.keys(validationErrors).forEach((field) => {
       if (field.startsWith("requestDetails.")) {
         dispatch(clearValidationError(field));
       }
     });
 
-    // Validate required fields
     if (!data.description.trim()) {
       newErrors["requestDetails.description"] = t("validation.fieldRequired");
       isValid = false;
@@ -76,7 +74,6 @@ const RequestDetailsStep: FC = () => {
       isValid = false;
     }
 
-    // Set validation errors
     Object.entries(newErrors).forEach(([field, error]) => {
       dispatch(setValidationError({ field, error }));
     });
@@ -89,7 +86,6 @@ const RequestDetailsStep: FC = () => {
       dispatch(submitFormStart());
 
       try {
-        // Simulate API call
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
         dispatch(updateRequestDetails(data));
@@ -157,7 +153,6 @@ const RequestDetailsStep: FC = () => {
         </div>
 
         <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Request Information */}
           <div className="bg-gray-50 p-6 rounded-lg">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               {t("sections.requestInformation")}
@@ -195,7 +190,6 @@ const RequestDetailsStep: FC = () => {
           </div>
         </form>
 
-        {/* AI Help Modal */}
         <AIHelpModal
           isOpen={isAIModalOpen}
           onClose={() => setIsAIModalOpen(false)}

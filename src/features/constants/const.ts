@@ -1,4 +1,3 @@
-// Request Priority constants (используется в API и других местах)
 export const REQUEST_PRIORITY = {
   LOW: "low",
   MEDIUM: "medium",
@@ -9,7 +8,6 @@ export const REQUEST_PRIORITY = {
 export type RequestPriority =
   (typeof REQUEST_PRIORITY)[keyof typeof REQUEST_PRIORITY];
 
-// Request Status constants (используется в API и других местах)
 export const REQUEST_STATUS = {
   DRAFT: "draft",
   SUBMITTED: "submitted",

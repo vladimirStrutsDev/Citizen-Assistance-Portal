@@ -21,7 +21,6 @@ const AssistanceRequestStepper: FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Progress Indicator */}
       <div className="mb-8">
         <ProgressIndicator
           currentStep={currentStep}
@@ -30,7 +29,6 @@ const AssistanceRequestStepper: FC = () => {
         />
       </div>
 
-      {/* Main Content Card */}
       <WizardCard
         currentStep={currentStep}
         stepLabels={stepLabels}
@@ -39,7 +37,6 @@ const AssistanceRequestStepper: FC = () => {
         <StepRenderer currentStep={currentStep} />
       </WizardCard>
 
-      {/* Help Section */}
       <HelpSection />
     </div>
   );

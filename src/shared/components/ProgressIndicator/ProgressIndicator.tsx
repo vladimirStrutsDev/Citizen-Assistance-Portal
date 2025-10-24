@@ -17,7 +17,6 @@ const ProgressIndicator: FC<IProps> = ({
 
   return (
     <div className={`w-full ${className}`}>
-      {/* Progress bar */}
       <div className="relative">
         <div className="flex items-center justify-between mb-4">
           {stepLabels.map((label, index) => {
@@ -30,7 +29,6 @@ const ProgressIndicator: FC<IProps> = ({
                 key={stepNumber}
                 className="flex flex-col items-center space-y-2"
               >
-                {/* Step circle */}
                 <div
                   className={`
                     w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium
@@ -61,7 +59,6 @@ const ProgressIndicator: FC<IProps> = ({
                   )}
                 </div>
 
-                {/* Step label */}
                 <span
                   className={`
                     text-xs font-medium text-center max-w-20
@@ -79,7 +76,6 @@ const ProgressIndicator: FC<IProps> = ({
           })}
         </div>
 
-        {/* Progress line */}
         <div className="absolute top-4 left-4 right-4 h-0.5 bg-gray-200 -z-10">
           <div
             className="h-full bg-indigo-600 transition-all duration-300 ease-out"
@@ -88,7 +84,6 @@ const ProgressIndicator: FC<IProps> = ({
         </div>
       </div>
 
-      {/* Step counter */}
       <div className="text-center">
         <span className="text-sm text-gray-600">
           Step {currentStep} of {totalSteps}

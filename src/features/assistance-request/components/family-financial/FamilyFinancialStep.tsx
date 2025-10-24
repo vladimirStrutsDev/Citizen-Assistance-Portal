@@ -63,14 +63,12 @@ const FamilyFinancialStep: FC = () => {
     let isValid = true;
     const newErrors: Record<string, string> = {};
 
-    // Clear previous validation errors
     Object.keys(validationErrors).forEach((field) => {
       if (field.startsWith("familyFinancial.")) {
         dispatch(clearValidationError(field));
       }
     });
 
-    // Validate required fields
     if (data.financialInfo.monthlyIncome < 0) {
       newErrors["familyFinancial.financialInfo.monthlyIncome"] = t(
         "validation.mustBeNumber"
@@ -85,7 +83,6 @@ const FamilyFinancialStep: FC = () => {
       isValid = false;
     }
 
-    // Set validation errors
     Object.entries(newErrors).forEach(([field, error]) => {
       dispatch(setValidationError({ field, error }));
     });
@@ -106,7 +103,6 @@ const FamilyFinancialStep: FC = () => {
 
   const handleFieldChange = (field: string, value: any) => {
     methods.setValue(field as keyof FamilyFinancialStep, value);
-    // Clear validation error when user starts typing
     const errorField = `familyFinancial.${field}`;
     if (validationErrors[errorField]) {
       dispatch(clearValidationError(errorField));

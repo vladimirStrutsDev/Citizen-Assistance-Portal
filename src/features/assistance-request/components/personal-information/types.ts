@@ -1,4 +1,3 @@
-// Gender constants
 export const GENDER = {
   MALE: "male",
   FEMALE: "female",

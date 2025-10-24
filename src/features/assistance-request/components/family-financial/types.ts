@@ -1,4 +1,3 @@
-// Marital Status constants
 export const MARITAL_STATUS = {
   SINGLE: "single",
   MARRIED: "married",
@@ -9,7 +8,6 @@ export const MARITAL_STATUS = {
 
 export type MaritalStatus = typeof MARITAL_STATUS[keyof typeof MARITAL_STATUS];
 
-// Housing Status constants
 export const HOUSING_STATUS = {
   OWNED: "owned",
   RENTED: "rented",
@@ -20,7 +18,6 @@ export const HOUSING_STATUS = {
 
 export type HousingStatus = typeof HOUSING_STATUS[keyof typeof HOUSING_STATUS];
 
-// Employment Status constants
 export const EMPLOYMENT_STATUS = {
   EMPLOYED: "employed",
   UNEMPLOYED: "unemployed",

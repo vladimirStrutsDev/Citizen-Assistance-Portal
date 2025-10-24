@@ -1,4 +1,3 @@
-// Base types for the application
 export interface BaseEntity {
   id: string;
   createdAt: Date;
@@ -29,7 +28,6 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
   };
 }
 
-// Form validation types
 export interface ValidationRule {
   required?: boolean;
   minLength?: number;

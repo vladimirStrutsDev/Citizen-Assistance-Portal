@@ -15,7 +15,6 @@ const RequestSubmissionSuccess: FC = () => {
   };
 
   const handleViewRequests = () => {
-    // This would navigate to a requests list page in a real app
     console.log("Navigate to requests list");
   };
 
@@ -24,7 +23,6 @@ const RequestSubmissionSuccess: FC = () => {
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
         <SuccessHeader />
 
-        {/* Success Content */}
         <div className="p-6 sm:p-8">
           <div className="text-center mb-8">
             <p className="text-gray-700 text-lg leading-relaxed">
@@ -43,7 +41,6 @@ const RequestSubmissionSuccess: FC = () => {
         </div>
       </div>
 
-      {/* Support Information */}
       <div className="mt-8 text-center">
         <p className="text-sm text-gray-600">
           {t("success.needImmediateAssistance")}{" "}

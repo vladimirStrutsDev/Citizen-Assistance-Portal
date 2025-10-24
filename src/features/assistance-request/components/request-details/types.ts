@@ -1,4 +1,3 @@
-// Assistance Type constants
 export const ASSISTANCE_TYPE = {
   FINANCIAL_AID: "financial_aid",
   HOUSING_ASSISTANCE: "housing_assistance",
@@ -10,7 +9,6 @@ export const ASSISTANCE_TYPE = {
 
 export type AssistanceType = typeof ASSISTANCE_TYPE[keyof typeof ASSISTANCE_TYPE];
 
-// Urgency Level constants
 export const URGENCY_LEVEL = {
   LOW: "low",
   MEDIUM: "medium",
@@ -20,7 +18,6 @@ export const URGENCY_LEVEL = {
 
 export type UrgencyLevel = typeof URGENCY_LEVEL[keyof typeof URGENCY_LEVEL];
 
-// Document Category constants
 export const DOCUMENT_CATEGORY = {
   IDENTITY: "identity",
   INCOME: "income",
