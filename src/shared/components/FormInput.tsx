@@ -1,4 +1,5 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
+import type { ChangeEvent } from "react";
 import type { InputProps } from "../types";
 
 const FormInput = forwardRef<HTMLInputElement, InputProps>(
@@ -31,7 +32,7 @@ const FormInput = forwardRef<HTMLInputElement, InputProps>(
       ? `${baseInputStyles} border-red-300 focus:ring-red-500 focus:border-red-500`
       : `${baseInputStyles} border-gray-300 focus:ring-indigo-500 focus:border-indigo-500`;
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
         onChange(e.target.value);
       }

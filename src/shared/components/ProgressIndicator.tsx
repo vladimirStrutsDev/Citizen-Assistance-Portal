@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 
 interface ProgressIndicatorProps {
   currentStep: number;
@@ -7,7 +7,7 @@ interface ProgressIndicatorProps {
   className?: string;
 }
 
-const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
+const ProgressIndicator: FC<ProgressIndicatorProps> = ({
   currentStep,
   totalSteps,
   stepLabels,
@@ -24,7 +24,6 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
             const stepNumber = index + 1;
             const isCompleted = stepNumber < currentStep;
             const isCurrent = stepNumber === currentStep;
-            const isUpcoming = stepNumber > currentStep;
             
             return (
               <div

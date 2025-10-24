@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import ApplicationLayout from "./layouts/ApplicationLayout";
 import AssistanceRequestWizard from "./features/assistance-request/components/AssistanceRequestWizard";
-import RequestSubmissionSuccess from "./features/assistance-request/components/RequestSubmissionSuccess";
+import RequestSubmissionSuccess from "./features/assistance-request/components/request-submission-success/RequestSubmissionSuccess";
 import type { FC } from "react";
 
 const App: FC = () => {

@@ -1,16 +1,17 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import type { FC, ReactNode } from "react";
 
 interface ModalDialogProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
   size?: "sm" | "md" | "lg" | "xl";
   showCloseButton?: boolean;
   className?: string;
 }
 
-const ModalDialog: React.FC<ModalDialogProps> = ({
+const ModalDialog: FC<ModalDialogProps> = ({
   isOpen,
   onClose,
   title,

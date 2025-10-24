@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 // Base types for the application
 export interface BaseEntity {
   id: string;
@@ -74,7 +76,7 @@ export interface ButtonProps {
   size?: keyof ComponentSize;
   isLoading?: boolean;
   isDisabled?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
   className?: string;

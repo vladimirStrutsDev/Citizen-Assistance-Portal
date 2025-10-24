@@ -1,9 +1,9 @@
-import React from "react";
+import type { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 
-const ApplicationLayout: React.FC = () => {
+const ApplicationLayout: FC = () => {
   const { t, i18n } = useTranslation();
 
   const handleLanguageChange = (lang: "en" | "ar") => {
