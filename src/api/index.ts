@@ -1,14 +1,7 @@
 import axios from "axios";
 
-// export const apiClient = axios.create({
-//   baseURL: 'https://api.openai.com/v1',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-// });
-
 export const apiClient = axios.create({
-  baseURL: "https://api.z.ai/api/paas/v4/",
+  baseURL: "https://api.openai.com/v1",
   headers: {
     "Content-Type": "application/json",
   },

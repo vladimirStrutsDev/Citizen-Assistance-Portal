@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import type { FC, ReactNode } from "react";
+import type { FC } from "react";
+import type { ReactNode } from "react";
 
-interface ModalDialogProps {
+export interface IProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
@@ -11,7 +12,7 @@ interface ModalDialogProps {
   className?: string;
 }
 
-const ModalDialog: FC<ModalDialogProps> = ({
+const ModalDialog: FC<IProps> = ({
   isOpen,
   onClose,
   title,

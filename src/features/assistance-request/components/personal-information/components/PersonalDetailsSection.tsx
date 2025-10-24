@@ -1,16 +1,15 @@
 import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import FormInput from "../../../../../shared/components/FormInput";
-import { GENDER } from "../../../../constants/const";
-import { type PersonalInfoStep } from "../../../types";
+import FormInput from "../../../../../shared/components/FormInput/FormInput";
+import { type PersonalInfoStep, GENDER } from "../types";
 
-interface PersonalDetailsSectionProps {
+interface IProps {
   validationErrors: Record<string, string>;
   onFieldChange: (field: string, value: any) => void;
 }
 
-const PersonalDetailsSection: FC<PersonalDetailsSectionProps> = ({
+const PersonalDetailsSection: FC<IProps> = ({
   validationErrors,
   onFieldChange,
 }) => {

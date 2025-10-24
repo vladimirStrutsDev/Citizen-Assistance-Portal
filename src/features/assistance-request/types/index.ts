@@ -1,15 +1,11 @@
 import { type BaseEntity } from "../../../shared/types";
 import {
-  type Gender,
-  type MaritalStatus,
-  type HousingStatus,
-  type EmploymentStatus,
-  type AssistanceType,
   type RequestPriority,
   type RequestStatus,
-  type UrgencyLevel,
-  type DocumentCategory,
 } from "../../constants/const";
+import type { MaritalStatus, HousingStatus, EmploymentStatus, FamilyFinancialStep } from "../components/family-financial/types";
+import type { Gender, PersonalInfoStep } from "../components/personal-information/types";
+import type { AssistanceType, DocumentCategory, UrgencyLevel, RequestDetailsStep } from "../components/request-details/types";
 
 export interface CitizenProfile extends BaseEntity {
   fullName: string;
@@ -119,28 +115,7 @@ export interface ReviewNote {
   isInternal: boolean;
 }
 
-export interface PersonalInfoStep {
-  fullName: string;
-  nationalId: string;
-  dateOfBirth: string;
-  gender: Gender;
-  contactInfo: ContactInformation;
-  address: AddressInformation;
-}
-
-export interface FamilyFinancialStep {
-  familyInfo: FamilyInformation;
-  financialInfo: FinancialInformation;
-  employmentInfo: EmploymentInformation;
-}
-
-export interface RequestDetailsStep {
-  requestType: AssistanceType;
-  description: string;
-  urgencyLevel: UrgencyLevel;
-  supportingDocuments: DocumentAttachment[];
-}
-
+// Состояние для Redux store
 export interface AssistanceRequestState {
   currentStep: number;
   totalSteps: number;

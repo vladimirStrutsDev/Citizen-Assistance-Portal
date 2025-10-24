@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
-import Button from "../../../../../shared/components/Button";
+import Button from "../../../../../shared/components/Button/Button";
 
-interface ActionButtonsSectionProps {
+interface IProps {
   onGoHome: () => void;
   onViewRequests: () => void;
 }
 
-const ActionButtonsSection: FC<ActionButtonsSectionProps> = ({
+const ActionButtonsSection: FC<IProps> = ({
   onGoHome,
   onViewRequests,
 }) => {

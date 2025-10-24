@@ -1,16 +1,15 @@
 import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import FormInput from "../../../../../shared/components/FormInput";
-import { HOUSING_STATUS } from "../../../../constants/const";
-import { type FamilyFinancialStep } from "../../../types";
+import FormInput from "../../../../../shared/components/FormInput/FormInput";
+import { type FamilyFinancialStep, HOUSING_STATUS } from "../types";
 
-interface FinancialInformationSectionProps {
+interface IProps {
   validationErrors: Record<string, string>;
   onFieldChange: (field: string, value: any) => void;
 }
 
-const FinancialInformationSection: FC<FinancialInformationSectionProps> = ({
+const FinancialInformationSection: FC<IProps> = ({
   validationErrors,
   onFieldChange,
 }) => {

@@ -14,12 +14,12 @@ import {
   submitFormFailure,
   previousStep,
 } from "../../../../core/store/slices/assistanceRequestSlice";
-import Button from "../../../../shared/components/Button";
-import { type RequestDetailsStep } from "../../types";
-import {
+import Button from "../../../../shared/components/Button/Button";
+import { 
+  type RequestDetailsStep,
   ASSISTANCE_TYPE,
   URGENCY_LEVEL,
-} from "../../../constants/const";
+} from "./types";
 import { getAIAssistance } from "../../../../api/openai";
 import RequestTypeSection from "./components/RequestTypeSection";
 import DescriptionSection from "./components/DescriptionSection";

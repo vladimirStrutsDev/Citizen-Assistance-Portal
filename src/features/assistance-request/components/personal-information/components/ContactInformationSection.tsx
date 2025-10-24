@@ -1,15 +1,15 @@
 import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import FormInput from "../../../../../shared/components/FormInput";
-import { type PersonalInfoStep } from "../../../types";
+import FormInput from "../../../../../shared/components/FormInput/FormInput";
+import { type PersonalInfoStep } from "../types";
 
-interface ContactInformationSectionProps {
+interface IProps {
   validationErrors: Record<string, string>;
   onFieldChange: (field: string, value: any) => void;
 }
 
-const ContactInformationSection: FC<ContactInformationSectionProps> = ({
+const ContactInformationSection: FC<IProps> = ({
   validationErrors,
   onFieldChange,
 }) => {

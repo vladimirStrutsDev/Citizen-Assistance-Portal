@@ -1,8 +1,7 @@
 import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { ASSISTANCE_TYPE, URGENCY_LEVEL } from "../../../../constants/const";
-import { type RequestDetailsStep } from "../../../types";
+import { type RequestDetailsStep, ASSISTANCE_TYPE, URGENCY_LEVEL } from "../types";
 
 const RequestTypeSection: FC = () => {
   const { t } = useTranslation();

@@ -4,13 +4,8 @@ export const getAIAssistance = async (prompt: string): Promise<string> => {
   console.log("Sending prompt to AI:", prompt);
 
   try {
-    // const response = await apiClient.post('/chat/completions', {
-    //   model: 'gpt-3.5-turbo',
-    //   messages: [{ role: 'user', content: prompt }],
-    // });
-
     const response = await apiClient.post("/chat/completions", {
-      model: "glm-4.6",
+      model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt }],
     });
 

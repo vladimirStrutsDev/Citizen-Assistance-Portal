@@ -10,13 +10,13 @@ import {
   nextStep,
   previousStep,
 } from "../../../../core/store/slices/assistanceRequestSlice";
-import Button from "../../../../shared/components/Button";
-import { type FamilyFinancialStep } from "../../types";
-import {
+import Button from "../../../../shared/components/Button/Button";
+import { 
+  type FamilyFinancialStep,
   MARITAL_STATUS,
   HOUSING_STATUS,
   EMPLOYMENT_STATUS,
-} from "../../../constants/const";
+} from "./types";
 import FamilyInformationSection from "./components/FamilyInformationSection";
 import FinancialInformationSection from "./components/FinancialInformationSection";
 import EmploymentInformationSection from "./components/EmploymentInformationSection";

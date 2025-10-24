@@ -1,8 +1,21 @@
 import { forwardRef } from "react";
 import type { ChangeEvent } from "react";
-import type { InputProps } from "../types";
 
-const FormInput = forwardRef<HTMLInputElement, InputProps>(
+export interface IProps {
+  name: string;
+  label: string;
+  type?: "text" | "email" | "password" | "number" | "tel" | "date";
+  placeholder?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  onBlur?: () => void;
+  error?: string;
+  isRequired?: boolean;
+  isDisabled?: boolean;
+  className?: string;
+}
+
+const FormInput = forwardRef<HTMLInputElement, IProps>(
   (
     {
       name,

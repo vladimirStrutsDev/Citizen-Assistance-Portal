@@ -1,5 +1,3 @@
-import type { ReactNode } from 'react';
-
 // Base types for the application
 export interface BaseEntity {
   id: string;
@@ -18,7 +16,7 @@ export interface PaginationParams {
   page: number;
   limit: number;
   sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
+  sortOrder?: "asc" | "desc";
 }
 
 export interface PaginatedResponse<T> extends ApiResponse<T[]> {
@@ -52,46 +50,4 @@ export interface FormState<T> {
   isSubmitting: boolean;
   isDirty: boolean;
   isValid: boolean;
-}
-
-// UI Component types
-export interface ComponentVariant {
-  primary: string;
-  secondary: string;
-  success: string;
-  warning: string;
-  error: string;
-  info: string;
-}
-
-export interface ComponentSize {
-  sm: string;
-  md: string;
-  lg: string;
-  xl: string;
-}
-
-export interface ButtonProps {
-  variant?: keyof ComponentVariant;
-  size?: keyof ComponentSize;
-  isLoading?: boolean;
-  isDisabled?: boolean;
-  children: ReactNode;
-  onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
-  className?: string;
-}
-
-export interface InputProps {
-  name: string;
-  label: string;
-  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'date';
-  placeholder?: string;
-  value?: string;
-  onChange?: (value: string) => void;
-  onBlur?: () => void;
-  error?: string;
-  isRequired?: boolean;
-  isDisabled?: boolean;
-  className?: string;
 }

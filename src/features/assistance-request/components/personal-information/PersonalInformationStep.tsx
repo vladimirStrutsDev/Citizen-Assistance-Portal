@@ -9,9 +9,8 @@ import {
   updatePersonalInfo,
   nextStep,
 } from "../../../../core/store/slices/assistanceRequestSlice";
-import Button from "../../../../shared/components/Button";
-import { type PersonalInfoStep } from "../../types";
-import { GENDER } from "../../../constants/const";
+import Button from "../../../../shared/components/Button/Button";
+import { type PersonalInfoStep, GENDER } from "./types";
 import PersonalDetailsSection from "./components/PersonalDetailsSection";
 import ContactInformationSection from "./components/ContactInformationSection";
 import AddressInformationSection from "./components/AddressInformationSection";

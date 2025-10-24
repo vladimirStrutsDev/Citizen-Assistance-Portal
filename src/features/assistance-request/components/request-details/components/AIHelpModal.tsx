@@ -1,9 +1,9 @@
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
-import Button from "../../../../../shared/components/Button";
-import ModalDialog from "../../../../../shared/components/ModalDialog";
+import Button from "../../../../../shared/components/Button/Button";
+import ModalDialog from "../../../../../shared/components/ModalDialog/ModalDialog";
 
-interface AIHelpModalProps {
+interface IProps {
   isOpen: boolean;
   onClose: () => void;
   aiSuggestion: string;
@@ -13,7 +13,7 @@ interface AIHelpModalProps {
   onDiscardAI: () => void;
 }
 
-const AIHelpModal: FC<AIHelpModalProps> = ({
+const AIHelpModal: FC<IProps> = ({
   isOpen,
   onClose,
   aiSuggestion,

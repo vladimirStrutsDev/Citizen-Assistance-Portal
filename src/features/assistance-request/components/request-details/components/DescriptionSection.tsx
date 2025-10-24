@@ -1,16 +1,16 @@
 import type { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import Button from "../../../../../shared/components/Button";
-import { type RequestDetailsStep } from "../../../types";
+import Button from "../../../../../shared/components/Button/Button";
+import { type RequestDetailsStep } from "../types";
 
-interface DescriptionSectionProps {
+interface IProps {
   validationErrors: Record<string, string>;
   onFieldChange: (field: string, value: any) => void;
   onOpenAIModal: () => void;
 }
 
-const DescriptionSection: FC<DescriptionSectionProps> = ({
+const DescriptionSection: FC<IProps> = ({
   validationErrors,
   onFieldChange,
   onOpenAIModal,
