@@ -1,0 +1,197 @@
+{
+  "appTitle": "Citizen Assistance Portal",
+  "appSubtitle": "Connecting citizens with essential support services",
+  "steps": {
+    "personalInformation": {
+      "title": "Personal Information",
+      "description": "Please provide your basic personal details and contact information"
+    },
+    "familyFinancial": {
+      "title": "Family & Financial Information",
+      "description": "Tell us about your family situation and financial circumstances"
+    },
+    "requestDetails": {
+      "title": "Assistance Request Details",
+      "description": "Describe the type of assistance you need and your current situation"
+    }
+  },
+  "sections": {
+    "personalDetails": "Personal Details",
+    "contactInformation": "Contact Information",
+    "addressInformation": "Address Information",
+    "familyInformation": "Family Information",
+    "financialInformation": "Financial Information",
+    "employmentInformation": "Employment Information",
+    "requestInformation": "Request Information"
+  },
+  "fields": {
+    "fullName": "Full Name",
+    "nationalId": "National ID",
+    "dateOfBirth": "Date of Birth",
+    "gender": "Gender",
+    "primaryPhone": "Primary Phone",
+    "emailAddress": "Email Address",
+    "streetAddress": "Street Address",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "postalCode": "Postal Code",
+    "maritalStatus": "Marital Status",
+    "numberOfDependents": "Number of Dependents",
+    "monthlyIncome": "Monthly Income",
+    "currency": "Currency",
+    "housingStatus": "Housing Status",
+    "employmentStatus": "Employment Status",
+    "requestType": "Type of Assistance",
+    "description": "Description",
+    "descriptionPlaceholder": "Please describe your situation and why you need assistance...",
+    "descriptionHelp": "Please provide at least 50 characters to help us understand your needs better.",
+    "urgencyLevel": "Urgency Level",
+    "workExperience": "Work Experience (years)",
+    "employerName": "Employer Name",
+    "jobTitle": "Job Title",
+    "hasSavings": "Has Savings",
+    "hasDebts": "Has Debts"
+  },
+  "options": {
+    "gender": {
+      "male": "Male",
+      "female": "Female",
+      "other": "Other",
+      "preferNotToSay": "Prefer not to say"
+    },
+    "maritalStatus": {
+      "single": "Single",
+      "married": "Married",
+      "divorced": "Divorced",
+      "widowed": "Widowed",
+      "separated": "Separated"
+    },
+    "housingStatus": {
+      "owned": "Owned",
+      "rented": "Rented",
+      "shared": "Shared",
+      "temporary": "Temporary",
+      "homeless": "Homeless"
+    },
+    "employmentStatus": {
+      "employed": "Employed",
+      "unemployed": "Unemployed",
+      "selfEmployed": "Self-Employed",
+      "student": "Student",
+      "retired": "Retired",
+      "disabled": "Disabled"
+    },
+    "assistanceType": {
+      "financialAid": "Financial Aid",
+      "housingAssistance": "Housing Assistance",
+      "medicalSupport": "Medical Support",
+      "foodAssistance": "Food Assistance",
+      "educationSupport": "Education Support",
+      "employmentServices": "Employment Services"
+    },
+    "urgencyLevel": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "critical": "Critical"
+    }
+  },
+  "actions": {
+    "continue": "Continue",
+    "back": "Back",
+    "submit": "Submit Request",
+    "save": "Save Draft",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "close": "Close",
+    "helpMeWrite": "Help Me Write",
+    "generateSuggestion": "Generate Suggestion",
+    "accept": "Accept",
+    "discard": "Discard"
+  },
+  "validation": {
+    "fullNameRequired": "Full name is required",
+    "nationalIdRequired": "National ID is required",
+    "dateOfBirthRequired": "Date of birth is required",
+    "phoneRequired": "Phone number is required",
+    "emailRequired": "Email address is required",
+    "emailInvalid": "Please enter a valid email address",
+    "addressRequired": "Street address is required",
+    "cityRequired": "City is required",
+    "countryRequired": "Country is required",
+    "fieldRequired": "This field is required",
+    "mustBeNumber": "Must be a valid number",
+    "minLength": "Must be at least {{min}} characters",
+    "maxLength": "Must be no more than {{max}} characters"
+  },
+  "messages": {
+    "submissionSuccessTitle": "Request Submitted Successfully!",
+    "submissionSuccessMessage": "Thank you for your submission. Your assistance request has been received and will be reviewed by our team. We will contact you within 3-5 business days.",
+    "submissionError": "There was an error submitting your request. Please try again.",
+    "saveDraftSuccess": "Draft saved successfully",
+    "loading": "Processing...",
+    "processing": "Please wait while we process your request..."
+  },
+  "navigation": {
+    "home": "Home",
+    "myRequests": "My Requests",
+    "profile": "Profile",
+    "settings": "Settings",
+    "help": "Help",
+    "logout": "Logout"
+  },
+  "common": {
+    "required": "Required",
+    "optional": "Optional",
+    "yes": "Yes",
+    "no": "No",
+    "selectOption": "Select an option",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "clear": "Clear",
+    "reset": "Reset"
+  },
+  "aiHelp": {
+    "description": "AI can help you write a clear and detailed description of your situation. Click the button below to generate a suggestion based on your request type.",
+    "suggestion": "AI Suggestion"
+  },
+  "success": {
+    "submissionSuccessSubtitle": "Your assistance request has been successfully submitted",
+    "whatHappensNext": "What happens next?",
+    "initialReview": "Initial Review",
+    "initialReviewDescription": "Our team will review your request within 24 hours",
+    "caseAssignment": "Case Assignment",
+    "caseAssignmentDescription": "A case worker will be assigned to your request",
+    "contactFollowup": "Contact & Follow-up",
+    "contactFollowupDescription": "We'll contact you within 3-5 business days with next steps",
+    "referenceInformation": "Reference Information",
+    "requestId": "Request ID:",
+    "submitted": "Submitted:",
+    "viewMyRequests": "View My Requests",
+    "needImmediateAssistance": "Need immediate assistance? Contact us at",
+    "loading": "Loading...",
+    "needHelp": "Need Help?",
+    "needHelpDescription": "If you have any questions or need assistance filling out this form, please contact our support team at",
+    "orEmailUs": "or email us at"
+  },
+  "footer": {
+    "copyright": "© {{year}} Citizen Assistance Portal. All rights reserved.",
+    "tagline": "Providing essential support services to our community",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contactSupport": "Contact Support"
+  },
+  "language": {
+    "language": "Language:",
+    "english": "English",
+    "arabic": "Arabic"
+  },
+  "errors": {
+    "aiGenerationError": "Sorry, I couldn't generate a suggestion at this time. Please try again.",
+    "submissionError": "Failed to submit request. Please try again."
+  }
+}

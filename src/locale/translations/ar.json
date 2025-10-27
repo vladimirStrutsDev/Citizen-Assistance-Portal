@@ -1,0 +1,197 @@
+{
+  "appTitle": "بوابة المساعدة للمواطنين",
+  "appSubtitle": "ربط المواطنين بخدمات الدعم الأساسية",
+  "steps": {
+    "personalInformation": {
+      "title": "المعلومات الشخصية",
+      "description": "يرجى تقديم بياناتك الشخصية الأساسية ومعلومات الاتصال"
+    },
+    "familyFinancial": {
+      "title": "معلومات الأسرة والمالية",
+      "description": "أخبرنا عن وضعك العائلي وظروفك المالية"
+    },
+    "requestDetails": {
+      "title": "تفاصيل طلب المساعدة",
+      "description": "صف نوع المساعدة التي تحتاجها وحالتك الحالية"
+    }
+  },
+  "sections": {
+    "personalDetails": "البيانات الشخصية",
+    "contactInformation": "معلومات الاتصال",
+    "addressInformation": "معلومات العنوان",
+    "familyInformation": "معلومات الأسرة",
+    "financialInformation": "المعلومات المالية",
+    "employmentInformation": "معلومات التوظيف",
+    "requestInformation": "معلومات الطلب"
+  },
+  "fields": {
+    "fullName": "الاسم الكامل",
+    "nationalId": "الرقم القومي",
+    "dateOfBirth": "تاريخ الميلاد",
+    "gender": "الجنس",
+    "primaryPhone": "الهاتف الأساسي",
+    "emailAddress": "عنوان البريد الإلكتروني",
+    "streetAddress": "عنوان الشارع",
+    "city": "المدينة",
+    "state": "المحافظة",
+    "country": "الدولة",
+    "postalCode": "الرمز البريدي",
+    "maritalStatus": "الحالة الاجتماعية",
+    "numberOfDependents": "عدد المعالين",
+    "monthlyIncome": "الدخل الشهري",
+    "currency": "العملة",
+    "housingStatus": "حالة السكن",
+    "employmentStatus": "الحالة الوظيفية",
+    "requestType": "نوع المساعدة",
+    "description": "الوصف",
+    "descriptionPlaceholder": "يرجى وصف وضعك والسبب في حاجتك للمساعدة...",
+    "descriptionHelp": "يرجى تقديم 50 حرف على الأقل لمساعدتنا في فهم احتياجاتك بشكل أفضل.",
+    "urgencyLevel": "مستوى الأولوية",
+    "workExperience": "الخبرة العملية (بالسنوات)",
+    "employerName": "اسم صاحب العمل",
+    "jobTitle": "المسمى الوظيفي",
+    "hasSavings": "لديه مدخرات",
+    "hasDebts": "لديه ديون"
+  },
+  "options": {
+    "gender": {
+      "male": "ذكر",
+      "female": "أنثى",
+      "other": "آخر",
+      "preferNotToSay": "أفضل عدم الإفصاح"
+    },
+    "maritalStatus": {
+      "single": "أعزب/عزباء",
+      "married": "متزوج/متزوجة",
+      "divorced": "مطلق/مطلقة",
+      "widowed": "أرمل/أرملة",
+      "separated": "منفصل/منفصلة"
+    },
+    "housingStatus": {
+      "owned": "ملك",
+      "rented": "إيجار",
+      "shared": "مشترك",
+      "temporary": "مؤقت",
+      "homeless": "بلا مأوى"
+    },
+    "employmentStatus": {
+      "employed": "موظف",
+      "unemployed": "عاطل عن العمل",
+      "selfEmployed": "يعمل لحسابه الخاص",
+      "student": "طالب",
+      "retired": "متقاعد",
+      "disabled": "معاق"
+    },
+    "assistanceType": {
+      "financialAid": "المساعدة المالية",
+      "housingAssistance": "مساعدة السكن",
+      "medicalSupport": "الدعم الطبي",
+      "foodAssistance": "مساعدة الغذاء",
+      "educationSupport": "دعم التعليم",
+      "employmentServices": "خدمات التوظيف"
+    },
+    "urgencyLevel": {
+      "low": "منخفض",
+      "medium": "متوسط",
+      "high": "عالي",
+      "critical": "حرج"
+    }
+  },
+  "actions": {
+    "continue": "متابعة",
+    "back": "رجوع",
+    "submit": "إرسال الطلب",
+    "save": "حفظ المسودة",
+    "cancel": "إلغاء",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "confirm": "تأكيد",
+    "close": "إغلاق",
+    "helpMeWrite": "ساعدني في الكتابة",
+    "generateSuggestion": "إنشاء اقتراح",
+    "accept": "قبول",
+    "discard": "تجاهل"
+  },
+  "validation": {
+    "fullNameRequired": "الاسم الكامل مطلوب",
+    "nationalIdRequired": "الرقم القومي مطلوب",
+    "dateOfBirthRequired": "تاريخ الميلاد مطلوب",
+    "phoneRequired": "رقم الهاتف مطلوب",
+    "emailRequired": "عنوان البريد الإلكتروني مطلوب",
+    "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "addressRequired": "عنوان الشارع مطلوب",
+    "cityRequired": "المدينة مطلوبة",
+    "countryRequired": "الدولة مطلوبة",
+    "fieldRequired": "هذا الحقل مطلوب",
+    "mustBeNumber": "يجب أن يكون رقماً صالحاً",
+    "minLength": "يجب أن يكون {{min}} حرف على الأقل",
+    "maxLength": "يجب ألا يزيد عن {{max}} حرف"
+  },
+  "messages": {
+    "submissionSuccessTitle": "تم إرسال الطلب بنجاح!",
+    "submissionSuccessMessage": "شكرًا لك على تقديمك. تم استلام طلب المساعدة وسيتم مراجعته من قبل فريقنا. سنتصل بك خلال 3-5 أيام عمل.",
+    "submissionError": "حدث خطأ في إرسال طلبك. يرجى المحاولة مرة أخرى.",
+    "saveDraftSuccess": "تم حفظ المسودة بنجاح",
+    "loading": "جار المعالجة...",
+    "processing": "يرجى الانتظار بينما نعالج طلبك..."
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "myRequests": "طلباتي",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "help": "المساعدة",
+    "logout": "تسجيل الخروج"
+  },
+  "common": {
+    "required": "مطلوب",
+    "optional": "اختياري",
+    "yes": "نعم",
+    "no": "لا",
+    "selectOption": "اختر خياراً",
+    "search": "بحث",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "clear": "مسح",
+    "reset": "إعادة تعيين"
+  },
+  "aiHelp": {
+    "description": "يمكن للذكاء الاصطناعي مساعدتك في كتابة وصف واضح ومفصل لحالتك. انقر على الزر أدناه لإنشاء اقتراح بناءً على نوع طلبك.",
+    "suggestion": "اقتراح الذكاء الاصطناعي"
+  },
+  "success": {
+    "submissionSuccessSubtitle": "تم إرسال طلب المساعدة بنجاح",
+    "whatHappensNext": "ماذا يحدث بعد ذلك؟",
+    "initialReview": "المراجعة الأولية",
+    "initialReviewDescription": "سيقوم فريقنا بمراجعة طلبك خلال 24 ساعة",
+    "caseAssignment": "تعيين الحالة",
+    "caseAssignmentDescription": "سيتم تعيين عامل حالة لطلبك",
+    "contactFollowup": "الاتصال والمتابعة",
+    "contactFollowupDescription": "سنتصل بك خلال 3-5 أيام عمل مع الخطوات التالية",
+    "referenceInformation": "معلومات المرجع",
+    "requestId": "رقم الطلب:",
+    "submitted": "تم الإرسال:",
+    "viewMyRequests": "عرض طلباتي",
+    "needImmediateAssistance": "تحتاج مساعدة فورية؟ اتصل بنا على",
+    "loading": "جار التحميل...",
+    "needHelp": "تحتاج مساعدة؟",
+    "needHelpDescription": "إذا كان لديك أي أسئلة أو تحتاج مساعدة في ملء هذا النموذج، يرجى الاتصال بفريق الدعم لدينا على",
+    "orEmailUs": "أو راسلنا على"
+  },
+  "footer": {
+    "copyright": "© {{year}} بوابة المساعدة للمواطنين. جميع الحقوق محفوظة.",
+    "tagline": "تقديم خدمات الدعم الأساسية لمجتمعنا",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsOfService": "شروط الخدمة",
+    "contactSupport": "اتصل بالدعم"
+  },
+  "language": {
+    "language": "اللغة:",
+    "english": "الإنجليزية",
+    "arabic": "العربية"
+  },
+  "errors": {
+    "aiGenerationError": "عذراً، لم أتمكن من إنشاء اقتراح في هذا الوقت. يرجى المحاولة مرة أخرى.",
+    "submissionError": "فشل في إرسال الطلب. يرجى المحاولة مرة أخرى."
+  }
+}
